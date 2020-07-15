@@ -1,39 +1,26 @@
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class test {
 
     public static void main(String[] args) {
+        int h = 1024 * 1024 * 1024 + 1;
+        System.out.println(h);
+        System.out.println(h >>> 16);
+        System.out.println((h) ^ (h >>> 16));
 
-    }
+        System.out.println(Integer.MAX_VALUE << 1);
 
-    public class Interval {
-        int start, end;
+        HashMap m = new HashMap();
 
-        Interval(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-    }
+        HashMap m1 = new HashMap(32);
 
-    public class Solution {
-        /*
-         * @param nums: a list of integers
-         * @return: find a  majority number
-         */
-        public int majorityNumber(List<Integer> nums) {
-            int length = nums.size();
-            HashMap<Integer, Integer> hm = new HashMap<>();
-            for (Integer num : nums) {
-                if (hm.containsKey(num)) {
-                    int i = hm.get(num) + 1;
-                    if (i > length / 2) return num;
-                    hm.put(num, hm.get(num) + 1);
-                } else hm.put(num, 1);
-            }
-            return 0;
-        }
+        Queue queue = new LinkedList();
+        Stack stack = new Stack();
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
     }
 
 }
-
