@@ -34,6 +34,7 @@ public class PeopleManagerByList {
         }
     }
 
+    //展示所有人的信息
     void show() {
         if (peoples.size() != 0) {
             System.out.println("信息为空");
@@ -43,6 +44,7 @@ public class PeopleManagerByList {
         System.out.println(peoples);
     }
 
+    //插入员工信息
     void insert() {
         String name;
         int age;
@@ -54,11 +56,25 @@ public class PeopleManagerByList {
         peoples.add(new People(name, age));
     }
 
+    //删除员工信息
     void delete() {
         System.out.println("请输入要删除的人员ID");
         int id = sc.nextInt();
         //删除指定id的人员
         peoples.removeIf(p -> p.getId() == id);
+        System.out.println("未找到指定人员，删除失败");
+    }
+
+    //查找员工信息
+    void find() {
+        System.out.println("请输入要查找的人员ID");
+        int id = sc.nextInt();
+        //删除指定id的人员
+        for (var p : peoples)
+            if (p.getId() == id) {
+                System.out.println(p);
+                return;
+            }
         System.out.println("未找到指定人员，删除失败");
     }
 }
