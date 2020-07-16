@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class PeopleManagerByList {
+public class PeopleManagerByCollection {
 
     static ArrayList<People> peoples = new ArrayList<>();
     private final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        PeopleManagerByList arrayPeopleManager = new PeopleManagerByList();
+        PeopleManagerByCollection arrayPeopleManager = new PeopleManagerByCollection();
         arrayPeopleManager.start();
     }
 
     void start() {
         int a;
         while (true) {
-            System.out.println("欢迎进入人力资源管理系统，请操作，1.查看，2.添加，3.删除，4.退出");
+            System.out.println("欢迎进入人力资源管理系统，请操作，1.查看，2.添加，3.删除，4.查找,5.退出");
             a = sc.nextInt();
             if (a == 1) {
                 show();
@@ -26,6 +26,8 @@ public class PeopleManagerByList {
             } else if (a == 3) {
                 delete();
             } else if (a == 4) {
+                find();
+            } else if (a == 5) {
                 System.out.println("退出");
                 return;
             } else {
@@ -36,7 +38,7 @@ public class PeopleManagerByList {
 
     //展示所有人的信息
     void show() {
-        if (peoples.size() != 0) {
+        if (peoples.size() == 0) {
             System.out.println("信息为空");
             return;
         }
@@ -75,7 +77,7 @@ public class PeopleManagerByList {
                 System.out.println(p);
                 return;
             }
-        System.out.println("未找到指定人员，删除失败");
+        System.out.println("未找到指定人员");
     }
 }
 

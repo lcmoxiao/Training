@@ -1,26 +1,47 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
 
 public class test {
 
     public static void main(String[] args) {
-        int h = 1024 * 1024 * 1024 + 1;
-        System.out.println(h);
-        System.out.println(h >>> 16);
-        System.out.println((h) ^ (h >>> 16));
-
-        System.out.println(Integer.MAX_VALUE << 1);
-
-        HashMap m = new HashMap();
-
-        HashMap m1 = new HashMap(32);
-
-        Queue queue = new LinkedList();
-        Stack stack = new Stack();
-        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        FutureTest();
     }
+
+    static void FutureTest() {
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                return 666;
+            }
+        };
+
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        FutureTask<Integer> ft = new FutureTask<>(callable);
+
+        System.out.println(ft.isCancelled());
+        System.out.println(ft.isDone());
+
+
+        executorService.submit(ft);
+
+        try {
+            System.out.println(ft.get());
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(ft.isCancelled());
+        System.out.println(ft.isDone());
+    }
+
+    void ThreadTest() {
+        Thread t = new Thread("我是多线程1") {
+            @Override
+            public void run() {
+                System.out.println("你好你好我是" + getName());
+            }
+        };
+    }
+
 
 }
